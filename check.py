@@ -7,6 +7,7 @@ from time import sleep
 import ctypes
 import re
 from tqdm import tqdm
+from tqdm import tqdm_gui
 
 linecounter = 0
 with open("words.txt",'r') as f:
@@ -37,41 +38,41 @@ availablesoon = 0
 myCoolTitle = "[+] STARTING | COMPLETED " + str(counter) + "/" + str(linecounter) + "|"
 ctypes.windll.kernel32.SetConsoleTitleW(myCoolTitle)
 
-
+pbar = tqdm_gui(total=linecounter)
 
 for line in words:
     try:
         clear()
-        for i in tqdm(range(linecounter)):
-            counter = counter + 1
-            myCoolTitle = "RUNNING | COMPLETED " + str(counter - 1) + \
-                        "/" + str(linecounter) + " | " + "Available: " + str(availablele) + \
-                        " | " + "Available Soon: " + str(availablesoon) + " |"
-            ctypes.windll.kernel32.SetConsoleTitleW(myCoolTitle)
-            sleep(2)
-            url2 = url + line
-            req = Request(url2, headers=hdr)
-            page = urlopen(req)
-            soup = BeautifulSoup(page, "html.parser")
-            soup2 = str(soup)
-            if "Unavailable" in soup2:
-                print("[+]" + str(line) + " is unavailable")
-                clear()
-            elif "Available Later" in soup2:
-                availablesoon = availablesoon + 1
-                print("[+]" + line + " is available later!!!")
-                availabledate = soup.find("meta", {"name": "og:description"})
-                cumsock = str(availabledate)
-                cumsock2 = cumsock.split("t=\"")[1]
-                wordappend.write("\n [+]"+ line + " Is available later " + cumsock2.split("Z,")[0])
-                clear()
-                continue
-            elif "Available" in soup2:
-                availablele = availablele + 1
-                print("[+]" + line + " is available!!!")
-                wordappend.write("\n [+]" + line + " Is available!")    
-                clear()
-                continue
+        counter = counter + 1
+        pbar.update(+1)
+        myCoolTitle = "RUNNING | COMPLETED " + str(counter) + \
+                    "/" + str(linecounter) + " | " + "Available: " + str(availablele) + \
+                    " | " + "Available Soon: " + str(availablesoon) + " |"
+        ctypes.windll.kernel32.SetConsoleTitleW(myCoolTitle)
+        sleep(2)
+        url2 = url + line
+        req = Request(url2, headers=hdr)
+        page = urlopen(req)
+        soup = BeautifulSoup(page, "html.parser")
+        soup2 = str(soup)
+        if "Unavailable" in soup2:
+            print("[+]" + str(line) + " is unavailable")
+            clear()
+        elif "Available Later" in soup2:
+            availablesoon = availablesoon + 1
+            print("[+]" + line + " is available later!!!")
+            availabledate = soup.find("meta", {"name": "og:description"})
+            cumsock = str(availabledate)
+            cumsock2 = cumsock.split("t=\"")[1]
+            wordappend.write("\n [+]"+ line + " Is available later " + cumsock2.split("Z,")[0])
+            clear()
+            continue
+        elif "Available" in soup2:
+            availablele = availablele + 1
+            print("[+]" + line + " is available!!!")
+            wordappend.write("\n [+]" + line + " Is available!")    
+            clear()
+            continue
 
     except KeyboardInterrupt:
         clear()
@@ -83,8 +84,8 @@ for line in words:
         print("error " + str(IOError))
         print("Requesting too frequently, waiting 60 seconds.")
         sleep(60)
-        pass
+        continue
 
-
+pbar.close()
 words.close()
 wordappend.close()
