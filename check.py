@@ -44,6 +44,7 @@ for line in words:
     try:
         clear()
         counter = counter + 1
+        pbar.set_description("Available: " + str(availablele) + " | " + "Available Soon: " + str(availablesoon) + " |")
         pbar.update(+1)
         myCoolTitle = "RUNNING | COMPLETED " + str(counter) + \
                     "/" + str(linecounter) + " | " + "Available: " + str(availablele) + \
