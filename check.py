@@ -84,6 +84,7 @@ for line in words:
         clear()
         print("error " + str(IOError))
         print("Requesting too frequently, waiting 60 seconds.")
+        pbar.set_description("[+] SLEEPING FOR 60 SECONDS")
         sleep(60)
         continue
 
