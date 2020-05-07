@@ -1,6 +1,7 @@
 # MCNameChecker
 
 **If you enjoy this, please leave a star!**
+
 Most useful late night project so far.
 
 I really like the GUI, thanks tqdm. I will forever love you.
