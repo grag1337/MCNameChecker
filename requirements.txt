@@ -82,7 +82,7 @@ python-whois==0.7.2
 pytube==9.6.0
 PyTweening==1.0.3
 PyWavelets==1.1.1
-pywin32==227
+pywin32==301
 pywin32-ctypes==0.2.0
 PyYAML==5.4
 requests==2.23.0
