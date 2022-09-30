@@ -32,7 +32,7 @@ imageio==2.8.0
 imageio-ffmpeg==0.4.1
 ipwhois==1.1.0
 isort==4.3.21
-joblib==0.14.1
+joblib==1.2.0
 Keras==2.3.1
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.0
