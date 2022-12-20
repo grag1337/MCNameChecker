@@ -1,5 +1,7 @@
 # MCNameChecker
 
+# ! BROKEN, NOT FIXING IT ! 
+
 **If you enjoy this, please leave a star!**
 
 Most useful late night project so far.
