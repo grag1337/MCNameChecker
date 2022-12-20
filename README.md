@@ -1,6 +1,6 @@
 # MCNameChecker
 
-# ! BROKEN, NOT FIXING IT ! 
+# ! BROKEN, PROJECT IS ABANDONED ! 
 
 **If you enjoy this, please leave a star!**
 
